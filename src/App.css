@@ -1,38 +1,264 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* * {
+  border: 1px solid red
+} */
+#root {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  /* height: 100vh; */
+  /* background-color: white; */
+  background-color: rgb(66 62 62 / 5%);
+
+  /* background-image: url(https://img.freepik.com/premium-vector/interface-structure-data-calculation-systems_49459-481.jpg);
+  background-size: cover; */
+}
+.App {
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
+  /* border: 1px solid grey;
+    box-shadow: -5px -5px 9px rgba(255,255,255,0.45), 5px 5px 9px rgba(94,104,121,0.3); */
+    border-radius: 20px;
+    background-color: rgb(66 62 62 / 5%);
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(8px);
+  }
+.app_wrapper{ 
+  width: 100%;
+  /* max-width: 1440px; */
+  margin: 0 auto;
+  display: flex;
+  flex: 1;
+  min-height: 800px;
+}
+.app_inner_wrapper {
+  width: 100%; 
+  margin: 40px;
+  /* border: 1px solid grey; */
+  display: flex;
+  overflow: hidden;
+}
+
+.menu_wrapper {
+  min-width: 200px;
+  max-width: 200px;
+  margin-left: -200px;
+  border-radius: 20px;
+position: absolute;
+top: 0;
+left: 0;
+  z-index: 10;
+  height: 100%;
+  transition: .5s;
+  box-shadow: unset;
+  background-color: white;
+}
+.menu_button_containe {
+  position: relative;
+  width: 100%;
+}
+.menu_wrapper img {
+  position: absolute;
+  left: -20px;
+}
+.menu_wrapper.open {
+  margin-left: 0;
+  padding: 20px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.menu_wrapper ul {
+  padding-left: unset;
+  margin-top: 75px;
+  position: relative;
+  list-style: none;
+  margin-left: 14px;
+}
+.menu_wrapper ul li {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: 1s;
+
+}
+.menu_wrapper ul li:before {
+content: "-";
+font-weight: 600;
+font-size: 2rem;
+margin-bottom: 5px;
+}
+
+.menu_wrapper h4 {
+  color: black;
+}
+.menu_wrapper a {
+  text-decoration: unset;
+}
+.menu_wrapper li:hover {
+  transform: translateX(10px);
+}
+.app_inner_wrapper .dashboard_wrapper {
+  flex: 1;
+  padding: 40px;
+  width: 100%;
+  overflow: scroll;
+}
+.dashboard_wrapper h1 {
+  margin-left: 20px;
+  margin-bottom: 0;
+}
+.pipeline_wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  overflow-x: scroll;
+  padding: 20px;
+}
+.pipeline_child {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+  gap: 10px;
+  background-color: rgb(252 247 247);
+  cursor: pointer;
+  min-width: 290px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: 1s;
+}
+.pipeline_child:hover {
+  background-color: rgb(233 233 233);
+}
+.pipeline_name_success {
+  flex: 1;
+  background-color: #36b37e;
   color: white;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.3rem;
+  padding: 10px;
+  transition: background-color 0.3s ease;
+  position: relative;
+}
+.pipeline_status_image {
+  background-color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+.pipeline_name_success:hover{
+  background-color: #14905b;
+}
+.pipeline_status_image img {
+  width: 75%;
+}
+.pipeline_info {
+  color: #575353;
+  background-color: unset;
+  margin: 0 5px 5px 5px;
+  padding: 10px;
+  display: flex;
+  flex-flow: column;
+  gap: 8px;
+  transition: background-color 0.3s ease;
+
 }
 
-.App-link {
-  color: #61dafb;
+.build_time {
+  position: absolute;
+  right: 10px;
+  font-weight: 400;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.build_time img {
+  filter: invert(1);
+  height: 22px;
+}
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  animation: spin 2s linear infinite;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.wrapper {
+  width: 100%;
+  height: 100%;
+  margin-top: 10px;
+}
+.commit_wrapper {
+  overflow: scroll;
+  width: auto;
+  height: 300px;
+  max-height: 300px;
+  background-color: #fcf7f7;
+  margin-top: 25px;
+  padding: 20px;
+  margin: 20px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+@media screen and (max-width: 1240px) {
+  .commit_wrapper {
+    margin-right: 0;
   }
-  to {
-    transform: rotate(360deg);
-  }
+}
+.commit_wrapper h4 {
+  margin-top: 0;
+}
+.commit_wrapper table {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+}
+.commit_wrapper thead {
+  flex: 1;
+  display: flex;
+  width: 100%;
+}
+.commit_wrapper thead tr { 
+  flex: 1;
+  display: flex;
+}
+.commit_wrapper th {
+  flex: 1;
+  padding-bottom: 20px;
+
+  border-bottom: 2px solid black;
+  margin-bottom: 20px;
+}
+.commit_wrapper tbody {
+  flex-flow: column;
+  display: flex;
+  gap: 10px;
+}
+.commit_wrapper tbody tr {
+  padding-bottom: 10px;
+  border-bottom: 1px solid grey;
+}
+.commit_wrapper tbody tr:last-child {
+  border-bottom: unset;
+}
+
+.commit_wrapper tbody tr td{
+  width: 25%;
+  max-width: 25%;
+  overflow: scroll;
+text-align: left;  
 }
